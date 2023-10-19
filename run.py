@@ -8,7 +8,7 @@ if __name__ == "__main__":
 
 	log_format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 
-    logging.basicConfig(format=log_format, level=logging.DEBUG)
+	logging.basicConfig(format=log_format, level=logging.DEBUG)
 
 	parser = ParserCompaniesFiles()
 
