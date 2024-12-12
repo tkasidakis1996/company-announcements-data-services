@@ -1,4 +1,4 @@
-The following procedure describes how to run the linked_business python test
+The following procedure describes how to run the software
 
 (1) First download the repository from Github
 
@@ -12,13 +12,13 @@ When the container successfully starts, we move to the next step
 
 (3) pip3 install mysql-connector-python
 
-(4) Navigate inside the downloaded folder from github with name linked_business_python_test
+(4) Navigate inside the downloaded folder from github with name company-announcements-data-services
 
 (5) Execute python3 run.py which is the script that will extract the info from the txt files and it will save it to the database.
 
 Below I am presenting how I ran it to my computer
 
-tkasidakis@tkasidakis-ubuntu:~/Desktop/linked_business_python_test$ python3 run.py
+tkasidakis@tkasidakis-ubuntu:~/Desktop/company-announcements-data-services$ python3 run.py
 2023-10-19 21:08:31,764 - root - INFO - Output file (companies_info.json) created successfully
 --------------------------------------------------------------------------------
 Enter the network address of the database : 172.17.0.2
@@ -40,19 +40,19 @@ NOTE : 172.17.0.2 is the network address (IP) of the docker container where the 
 
 (6) Now it is time to build the image for our  docker container for the RESTful API which makes the database data available
 
-tkasidakis@tkasidakis-ubuntu:~/Desktop/linked_business_python_test$ cd restful_api/
-tkasidakis@tkasidakis-ubuntu:~/Desktop/linked_business_python_test/restful_api$ ls
+tkasidakis@tkasidakis-ubuntu:~/Desktop/company-announcements-data-services$ cd restful_api/
+tkasidakis@tkasidakis-ubuntu:~/Desktop/company-announcements-data-services/restful_api$ ls
 core  Dockerfile  Dockerfile_dev  models
-tkasidakis@tkasidakis-ubuntu:~/Desktop/linked_business_python_test/restful_api$ sudo docker build -t restful_api_image .
+tkasidakis@tkasidakis-ubuntu:~/Desktop/company-announcements-data-services/restful_api$ sudo docker build -t restful_api_image .
 [+] Building 0.5s (11/11) FINISHED                                                                                                                                                                         
  => [internal] load build definition from Dockerfile                                                                                                                                                  0.0s
 .........................................................                                                                                                         0.0s
  => => naming to docker.io/library/restful_api_image                                                                                                                                                  0.0s
-tkasidakis@tkasidakis-ubuntu:~/Desktop/linked_business_python_test/restful_api$ 
+tkasidakis@tkasidakis-ubuntu:~/Desktop/company-announcements-data-services/restful_api$ 
 
 (7) Now let's run the docker container with the RESTful API (BEWARE DON'T FORGET THE -it flag in order to receive an interactive shell inside the container)
 
-tkasidakis@tkasidakis-ubuntu:~/Desktop/linked_business_python_test/restful_api$ sudo docker run --name restful_api -it restful_api_image
+tkasidakis@tkasidakis-ubuntu:~/Desktop/company-announcements-data-services/restful_api$ sudo docker run --name restful_api -it restful_api_image
 --------------------------------------------------------------------------------
 Enter the network address of the database: 172.17.0.2
 --------------------------------------------------------------------------------
@@ -74,10 +74,10 @@ INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 
 (9) If you want to test the functionality of the API run the following (first do pip3 -U install pytest)
 
-tkasidakis@tkasidakis-ubuntu:~/Desktop/linked_business_python_test$ pytest -s test_RESTful_API.py
+tkasidakis@tkasidakis-ubuntu:~/Desktop/company-announcements-data-services$ pytest -s test_RESTful_API.py
 =========================================================================================== test session starts ===========================================================================================
 platform linux -- Python 3.10.12, pytest-7.4.2, pluggy-1.3.0
-rootdir: /home/tkasidakis/Desktop/linked_business_python_test
+rootdir: /home/tkasidakis/Desktop/company-announcements-data-services
 plugins: anyio-3.6.2
 collecting ... Enter network address of the RESTful_API : 172.17.0.3
 collected 2 items                                                                                                                                                                                         
